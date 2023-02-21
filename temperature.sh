@@ -19,5 +19,13 @@ while true; do
 		| while read line; do 
 			printf "\033[${column}C$line\n"
 		done
+	sensors \
+		| grep -A 0 'Composite' \
+		| cut -c16-19 \
+		| awk '{print "\033[0;31m" $0 "\033[0m°C"}' \
+		| awk '{print "SSD:     " $0}' \
+		| while read line; do
+			printf "\033[${column}C$line\n"
+		done
 	sleep 1
 done
