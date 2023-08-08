@@ -1,6 +1,6 @@
 #!/bin/bash
 trap ' ' INT
-file="/home/maksym/pics/device/$(date +%s).gif"
+file="/home/maksym/pics/device/$(date +%s).mp4"
 printf 'recording\n'
 adb shell screenrecord /sdcard/video.mp4
 printf '\033[10D'
@@ -9,6 +9,5 @@ sleep .5
 printf 'downloading\n'
 adb pull /sdcard/video.mp4 . > /dev/null
 adb shell rm /sdcard/video.mp4
-printf 'converting\n'
-ffmpeg -i video.mp4 -vf "fps=24,scale=480:-1:flags=lanczos" -loglevel 0 $file
-rm video.mp4
+printf 'moving\n'
+mv video.mp4 $file

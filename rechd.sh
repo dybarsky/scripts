@@ -10,5 +10,5 @@ printf 'downloading\n'
 adb pull /sdcard/video.mp4 . > /dev/null
 adb shell rm /sdcard/video.mp4
 printf 'converting\n'
-ffmpeg -i video.mp4 -vf "fps=24,scale=1080:-1:flags=lanczos" -loglevel 0 $file
+ffmpeg -i video.mp4 -vf "fps=60,scale=1080:-1:flags=lanczos" -loglevel 0 $file
 rm video.mp4
